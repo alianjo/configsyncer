@@ -1,0 +1,27 @@
+# permissions for end users to edit configsyncers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: configsyncer
+    app.kubernetes.io/managed-by: kustomize
+  name: configsyncer-editor-role
+rules:
+- apiGroups:
+  - configsyncer.intodevops.com
+  resources:
+  - configsyncers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - configsyncer.intodevops.com
+  resources:
+  - configsyncers/status
+  verbs:
+  - get

@@ -1,0 +1,71 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.16.1
+  name: configsyncers.configsyncer.intodevops.com
+spec:
+  group: configsyncer.intodevops.com
+  names:
+    kind: ConfigSyncer
+    listKind: ConfigSyncerList
+    plural: configsyncers
+    singular: configsyncer
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: ConfigSyncer is the Schema for the configsyncers API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: ConfigSyncerSpec defines the desired state of ConfigSyncer
+            properties:
+              configMapName:
+                type: string
+              destinationNamespace:
+                type: string
+              sourceNamespace:
+                description: Foo is an example field of ConfigSyncer. Edit configsyncer_types.go
+                  to remove/update
+                type: string
+            required:
+            - configMapName
+            - destinationNamespace
+            - sourceNamespace
+            type: object
+          status:
+            description: ConfigSyncerStatus defines the observed state of ConfigSyncer
+            properties:
+              lastSyncTime:
+                description: |-
+                  INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+                  Important: Run "make" to regenerate code after modifying this file
+                format: date-time
+                type: string
+            required:
+            - lastSyncTime
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

@@ -1,0 +1,11 @@
+apiVersion: configsyncer.intodevops.com/v1alpha1
+kind: ConfigSyncer
+metadata:
+  labels:
+    app.kubernetes.io/name: configsyncer
+    app.kubernetes.io/managed-by: kustomize
+  name: configsyncer-sample
+spec:
+  sourceNamespace: default
+  destinationNamespace: default2
+  configMapName: example-configmap
